@@ -1,0 +1,16 @@
+{
+  "name": "vibechef",
+  "version": "1.0.0",
+  "description": "AI-powered personalized recipe maker using Groq",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "groq-sdk": "^0.33.0",
+    "mongoose": "^9.8.0"
+  }
+}

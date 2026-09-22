@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeChef | AI Recipe Maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">🍳 VibeChef</div>
+    <span>AI-Powered Recipe Maker</span>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+
+        <span class="badge">✨ Powered by Groq AI</span>
+
+        <h1>
+          Turn your ingredients into something delicious.
+        </h1>
+
+        <p>
+          Tell us what's in your kitchen, choose your preferences,
+          and let AI create a personalized recipe for you.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="app-container">
+
+      <div class="left-column">
+
+        <div class="form-card">
+
+          <h2>Create Your Recipe</h2>
+
+          <p class="subtitle">
+            Customize your recipe based on what you have.
+          </p>
+
+          <form id="recipeForm">
+
+            <label for="ingredients">
+              What's in your kitchen?
+            </label>
+
+            <textarea
+              id="ingredients"
+              placeholder="e.g. chicken, rice, tomato, onion, garlic"
+              required
+            ></textarea>
+
+            <div class="form-grid">
+
+              <div>
+                <label for="cuisine">
+                  Cuisine
+                </label>
+
+                <select id="cuisine">
+                  <option>Any Cuisine</option>
+                  <option>Indian</option>
+                  <option>Italian</option>
+                  <option>Mexican</option>
+                  <option>Chinese</option>
+                  <option>Mediterranean</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="diet">
+                  Dietary Preference
+                </label>
+
+                <select id="diet">
+                  <option>No Preference</option>
+                  <option>Vegetarian</option>
+                  <option>Vegan</option>
+                  <option>High Protein</option>
+                  <option>Low Carb</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="cookingTime">
+                  Cooking Time
+                </label>
+
+                <select id="cookingTime">
+                  <option>15 minutes</option>
+                  <option selected>30 minutes</option>
+                  <option>45 minutes</option>
+                  <option>60 minutes</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="difficulty">
+                  Difficulty
+                </label>
+
+                <select id="difficulty">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="button-group">
+
+              <button
+                type="submit"
+                id="generateBtn"
+              >
+                🍳 Create My Recipe
+              </button>
+
+              <button
+                type="button"
+                id="surpriseBtn"
+                class="secondary-btn"
+              >
+                🎲 Surprise Me
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="history-card">
+
+          <div class="history-header">
+
+            <div>
+              <h2>Recent Recipes</h2>
+
+              <p>
+                Your saved recipes are securely stored in MongoDB.
+              </p>
+            </div>
+
+            <button
+              id="clearHistoryBtn"
+              class="clear-btn"
+            >
+              Clear
+            </button>
+
+          </div>
+
+          <div
+            id="historyList"
+            class="history-list"
+          >
+            <p class="no-history">
+              No saved recipes yet.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="result-card">
+
+        <div class="result-header">
+
+          <div>
+            <h2>Your AI Recipe</h2>
+
+            <span id="status">
+              Ready to cook?
+            </span>
+          </div>
+
+          <div class="recipe-actions">
+
+            <button
+              id="copyBtn"
+              class="action-btn"
+              disabled
+            >
+              📋 Copy
+            </button>
+
+            <button
+              id="saveBtn"
+              class="action-btn"
+              disabled
+            >
+              💾 Save
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          id="recipeOutput"
+          class="recipe-output"
+        >
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              🍽️
+            </div>
+
+            <h3>
+              Your recipe will appear here
+            </h3>
+
+            <p>
+              Enter your ingredients and click
+              "Create My Recipe" to get started.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div
+          id="customizer"
+          class="customizer"
+        >
+
+          <h3>
+            ✨ Customize Your Recipe
+          </h3>
+
+          <p>
+            Want to change the recipe?
+            Ask VibeChef to adjust it.
+          </p>
+
+          <div class="customizer-buttons">
+
+            <button
+              class="custom-btn"
+              data-modification="Make this recipe more spicy"
+            >
+              🌶️ More Spicy
+            </button>
+
+            <button
+              class="custom-btn"
+              data-modification="Make this recipe less spicy"
+            >
+              🧊 Less Spicy
+            </button>
+
+            <button
+              class="custom-btn"
+              data-modification="Reduce the amount of salt in this recipe"
+            >
+              🧂 Less Salt
+            </button>
+
+            <button
+              class="custom-btn"
+              data-modification="Increase the amount of salt in this recipe"
+            >
+              🧂 More Salt
+            </button>
+
+            <button
+              class="custom-btn"
+              data-modification="Make this recipe healthier"
+            >
+              🥗 Healthier
+            </button>
+
+            <button
+              class="custom-btn"
+              data-modification="Make this recipe faster to prepare and cook"
+            >
+              ⚡ Faster
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      VibeChef • AI-powered cooking inspiration
+    </p>
+  </footer>
+
+  <script src="/script.js"></script>
+
+</body>
+</html>
